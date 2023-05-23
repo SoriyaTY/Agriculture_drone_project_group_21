@@ -15,7 +15,7 @@ class TypeOfDrone extends Model
 
     // drone and type of drone 
     public function drone():HasOne{
-        return $this->hasOne('drones'::class);
+        return $this->hasOne(Drone::class);
     }
 
     public static function type($request, $id = null){
