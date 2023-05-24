@@ -14,7 +14,7 @@ class Drone extends Model
         "battery",
         "type",
         "instruction",
-        "user_id",
+        "user_id"
     ];
 
     public function user(){
