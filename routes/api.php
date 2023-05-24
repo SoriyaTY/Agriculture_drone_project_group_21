@@ -50,11 +50,11 @@ Route::get('droneType', [DroneTypeController::class, 'index']);
 Route::post('droneType', [DroneTypeController::class, 'store']);
 
 // // Drone ======================================================
-Route::get('drone', [DroneController::class, 'index']);
-Route::post('drone', [DroneController::class, 'store']);
+Route::get('drones', [DroneController::class, 'index']);
+Route::post('drones', [DroneController::class, 'store']);
 
 //plans=========================
-Route::get('plan', [PlanController::class, 'index']);
+Route::get('plans', [PlanController::class, 'index']);
 Route::post('plan', [PlanController::class, 'store']);
 Route::get('plan', [PlanController::class, 'show']);
 
