@@ -6,14 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class TypeOfDrone extends Model
+class DroneType extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'name',
+    protected $fillable =[
+        "type"
     ];
-
-    // drone and type of drone 
+    
     public function drone():HasOne{
         return $this->hasOne(Drone::class);
     }

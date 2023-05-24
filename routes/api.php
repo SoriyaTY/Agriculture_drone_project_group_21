@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\DroneController;
 use App\Http\Controllers\DroneTypeController;
+use App\Http\Controllers\PlanController;
+use App\Http\Controllers\RoleUserController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\FarmController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MapController;
@@ -23,6 +26,30 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+
+
+
+Route::get('users',[UserController::class,'index']);
+Route::post('users',[UserController::class,'store']);
+
+
+Route::post('roleUser',[RoleUserController::class,'store']);
+Route::get('roleUser',[RoleUserController::class,'index']);
+
+
+
+//  Type of drone ========================================
+
+Route::get('droneType',[DroneTypeController::class, 'index']);
+Route::post('droneType',[DroneTypeController::class, 'store']);
+
+// // Drone ======================================================
+Route::get('drone',[DroneController::class, 'index']);
+Route::post('drone',[DroneController::class, 'store']);
+
+Route::get('plan',[PlanController::class,'index']);
+Route::post('plan',[PlanController::class,'store']);
 //  Type of drone ========================================
 Route::get('/type',             [DroneTypeController::class, 'index'  ]);
 Route::post('/typePost',        [DroneTypeController::class, 'store'  ]);

@@ -5,30 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Drone extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
-        'size',
-        'amounTime',
-        'speed',
-        'battery', 
-        'drone_id'
+        "amount_Time",
+        "speed",
+        "battery",
+        "user_id",
+        "droneType_id"
     ];
 
-    // drone and type of drone
-    public function type():BelongsTo{
-        return $this->belongsTo(TypeOfDrone::class);
+    public function dronetypes():BelongsTo{
+        return $this->belongsTo(DroneType::class);
     }
 
-    public static function drone($request, $id=null){
-        $drones = $request->only(['name', 'size', 'amounTime', 'speed', 'battery', 'drone_id']);
-        $drones = self::updateOrCreate(['id'=>$id], $drones);
-        return $drones;
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 
 }
-

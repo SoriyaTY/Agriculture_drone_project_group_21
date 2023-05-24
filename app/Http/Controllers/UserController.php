@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,9 @@ class UserController extends Controller
     public function index()
     {
         //
-        return User::all();
+        $user = User::all();
+        $user = UserResource::collection($user);
+        return response()->json(['success'=>true,'data'=>$user]);
     }
 
     /**
@@ -26,7 +29,8 @@ class UserController extends Controller
             'name'=>request('name'),
             'number_phone'=>request('number_phone'),
             'email'=>request('email'),
-            'password'=>request('password')
+            'password'=>request('password'),
+            'role_id'=>request('role_id')
         ]);
         return response()->json(['success'=>true,"data"=>$user]);
     }
