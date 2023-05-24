@@ -42,6 +42,7 @@ class MapController extends Controller
      */
     public function update(MapRequest $request, string $id)
     {
+        dd(3);
         $updateMap = Map::maps($request, $id);
         return response()->json(['success'=>true, 'message'=> 'map is update'  ,'data'=>$updateMap], 200);
     }
