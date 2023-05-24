@@ -14,7 +14,8 @@ class LocationController extends Controller
      */
     public function index()
     {
-        return Location::all();
+        $location = Location::all();
+        return response()->json(['success'=>true,'data'=>$location]);
     }
 
     /**
@@ -23,7 +24,7 @@ class LocationController extends Controller
     public function store(LocationRequest $request)
     {
         $createLocation = Location::location($request);
-        return response()->json(['success'=>true, 'data'=>$createLocation], 200);
+        return response()->json(['success'=>true, 'data'=>$createLocation]);
     }
 
     /**
@@ -42,7 +43,7 @@ class LocationController extends Controller
     public function update(LocationRequest $request, string $id)
     {
         $updateLocation = Location::location($request, $id);
-        return response()->json(['success'=>true, 'meassage'=>'Location is update', 'data'=>$updateLocation], 200);
+        return response()->json(['success'=>true, 'meassage'=>'Location is alreadys update', 'data'=>$updateLocation], 200);
         
     }
 

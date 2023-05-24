@@ -20,7 +20,7 @@ class DroneResource extends JsonResource
             "speed"=>$this->speed,
             "battery"=>$this->battery,
             "users"=>new UserResource($this->user),
-            "dronetypes"=>$this->droneType_id
+            "type"=>$this->type
         ];
     }
 }
