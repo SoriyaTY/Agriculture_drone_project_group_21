@@ -29,7 +29,11 @@ class DroneRequest extends FormRequest
     public function rules(): array
     {
         return [
-            
+            'amount_Time'=>'required',
+            'speed'      =>'required',
+            'battery'    =>'required',
+            'user_id'    =>'required',
+            'droneType_id'=>'required'
         ];
     }
 }

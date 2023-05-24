@@ -23,6 +23,7 @@ class Drone extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+<<<<<<< HEAD
 
     public function plans(){
         return $this->belongsToMany(Plan::class,'drone_planes')->withTimestamps();
@@ -36,4 +37,14 @@ class Drone extends Model
         $drone->plans()->sync($dronePlan);
         return $drone;
     } 
+=======
+    
+    public static function drone($request, $id = null)
+    {
+        $drone = $request->only(['amount_Time', 'speed', 'battery', 'user_id', 'droneType_id']);
+        $drone = self::updateOrCreate(['id'=> $id], $drone);
+        return $drone;
+    }
+
+>>>>>>> c55f1703204f8f712486a4988c1bb00fd9627af9
 }
