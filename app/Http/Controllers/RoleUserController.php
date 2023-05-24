@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\DroneTypeResource;
-use App\Models\DroneType;
+use App\Http\Resources\RoleUserResource;
+use App\Models\RoleUser;
 use Illuminate\Http\Request;
 
-class DroneTypeController extends Controller
+class RoleUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,9 @@ class DroneTypeController extends Controller
     public function index()
     {
         //
-        $droneType = DroneType::all();
-        $droneType = DroneTypeResource::collection($droneType);
-        return response()->json(['success'=>true,'data'=>$droneType]);
-
+        $roleUser= RoleUser::all();
+        $roleUser = RoleUserResource::collection($roleUser);
+        return response()->json(['success'=>true,'data'=>$roleUser]);
     }
 
     /**
@@ -26,10 +25,10 @@ class DroneTypeController extends Controller
     public function store(Request $request)
     {
         //
-        $droneType = DroneType::create([
-            'type'=>request('type')
+        $roleUser = RoleUser::create([
+            "role"=>request("role")
         ]);
-        return response()->json(['success'=>true,'data'=>$droneType]);
+        return response()->json(['success'=>true,'data'=>$roleUser]);
     }
 
     /**

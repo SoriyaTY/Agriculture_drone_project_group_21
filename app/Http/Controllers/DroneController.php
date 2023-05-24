@@ -13,7 +13,10 @@ class DroneController extends Controller
      */
     public function index()
     {
-        return Drone::all();
+        //
+        $drone = Drone::all();
+        $drone = DroneResource::collection($drone);
+        return response()->json(['success'=>true,'data'=>$drone]);
     }
 
     /**
@@ -21,8 +24,15 @@ class DroneController extends Controller
      */
     public function store(Request $request)
     {
-        $store = Drone::drone($request);
-        return response()->json(['meassage'=>true, 'date'=>$store]);
+        //
+        $drone = Drone::create([
+            "amount_Time"=>request("amount_Time"),
+            "speed"=>request("speed"),
+            "battery"=>request("battery"),
+            "user_id"=>request("user_id"),
+            "droneType_id"=>request("droneType_id")
+        ]);
+        return response()->json(['success'=>true,'data'=>$drone]);
     }
 
     /**

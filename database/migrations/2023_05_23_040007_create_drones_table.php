@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('drones', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('size');
-            $table->string('amounTime');
-            $table->integer('speed');
+            $table->string('amount_Time');
+            $table->string('speed');
             $table->string('battery');
-            $table->unsignedBigInteger('drone_id');
-            $table->foreign('drone_id')->references('id')->on('type_of_drones')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign("user_id")->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('droneType_id');
+            $table->foreign("droneType_id")->references('id')->on('drone_types')->onDelete('cascade');
             $table->timestamps();
         });
     }

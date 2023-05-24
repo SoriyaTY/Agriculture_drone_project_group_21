@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\DroneTypeResource;
-use App\Models\DroneType;
+use App\Models\Plan;
 use Illuminate\Http\Request;
 
-class DroneTypeController extends Controller
+class PlanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +13,8 @@ class DroneTypeController extends Controller
     public function index()
     {
         //
-        $droneType = DroneType::all();
-        $droneType = DroneTypeResource::collection($droneType);
-        return response()->json(['success'=>true,'data'=>$droneType]);
-
+        $plan= Plan::all();
+        return response()->json(['success'=>true,'data'=>$plan]);
     }
 
     /**
@@ -26,10 +23,8 @@ class DroneTypeController extends Controller
     public function store(Request $request)
     {
         //
-        $droneType = DroneType::create([
-            'type'=>request('type')
-        ]);
-        return response()->json(['success'=>true,'data'=>$droneType]);
+        $plan = Plan::store($request);
+        return response()->json(['success'=>true,'data'=>$plan]);
     }
 
     /**
@@ -46,6 +41,8 @@ class DroneTypeController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $plan = Plan::store($request,$id);
+        return response()->json(['success'=>true,'data'=>$plan]);
     }
 
     /**

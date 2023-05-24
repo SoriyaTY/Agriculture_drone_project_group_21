@@ -1,12 +1,10 @@
 <?php
 
-<<<<<<< HEAD
-use App\Http\Controllers\TypeUserController;
-use App\Http\Controllers\UserController;
-=======
 use App\Http\Controllers\DroneController;
 use App\Http\Controllers\DroneTypeController;
->>>>>>> a306e9ce29cc9d6bcd799a7692135fde268b0883
+use App\Http\Controllers\PlanController;
+use App\Http\Controllers\RoleUserController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,28 +23,27 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-<<<<<<< HEAD
+
+
+
+
+Route::get('users',[UserController::class,'index']);
 Route::post('users',[UserController::class,'store']);
-Route::post('role',[TypeUserController::class,'store']);
-=======
+
+
+Route::post('roleUser',[RoleUserController::class,'store']);
+Route::get('roleUser',[RoleUserController::class,'index']);
+
+
+
 //  Type of drone ========================================
 
-Route::get('/type',[DroneTypeController::class, 'index']);
-Route::post('/typePost',[DroneTypeController::class, 'store']);
-Route::get('/typeShow',[DroneTypeController::class, 'show']);
-Route::put('/typeUpdate',[DroneTypeController::class, 'update']);
-Route::delete('/typeDelete',[DroneTypeController::class, 'destroy']);
+Route::get('droneType',[DroneTypeController::class, 'index']);
+Route::post('droneType',[DroneTypeController::class, 'store']);
 
+// // Drone ======================================================
+Route::get('drone',[DroneController::class, 'index']);
+Route::post('drone',[DroneController::class, 'store']);
 
-
-
-
-
-// Drone ======================================================
-
-Route::get('/drone',[DroneController::class, 'index']);
-Route::post('/dronePost',[DroneController::class, 'store']);
-Route::get('/droneShow',[DroneController::class, 'show']);
-Route::put('/droneUpdate',[DroneController::class, 'update']);
-Route::delete('/droneDelete',[DroneController::class, 'destroy']);
->>>>>>> a306e9ce29cc9d6bcd799a7692135fde268b0883
+Route::get('plan',[PlanController::class,'index']);
+Route::post('plan',[PlanController::class,'store']);
