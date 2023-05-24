@@ -19,4 +19,12 @@ class Map extends Model
     {
         return $this->belongsTo(Location::class);
     }
+
+    // Map 
+    public static function maps($request , $id = null)
+    {
+        $map = $request->only(['name', 'location_id']);
+        $map = self::updateOrCreate(['id'=>$id], $map);
+        return $map;
+    }
 }

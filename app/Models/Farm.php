@@ -12,12 +12,20 @@ class Farm extends Model
     protected $fillable = [
         'name',
         'address',
-        'location_id'
+        'location_id',
     ];
 
     // location and farm
     public function farm():BelongsTo
     {
         return $this->belongsTo(Location::class);
+    }
+
+    // Farm
+    public static function farms($request, $id = null)
+    {
+        $farm = $request->only(['name', 'address', 'location_id']);
+        $farm = self::updateOrCreate(['id'=>$id], $farm);
+        return $farm;
     }
 }
