@@ -24,5 +24,12 @@ class Drone extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+    
+    public static function drone($request, $id = null)
+    {
+        $drone = $request->only(['amount_Time', 'speed', 'battery', 'user_id', 'droneType_id']);
+        $drone = self::updateOrCreate(['id'=> $id], $drone);
+        return $drone;
+    }
 
 }
