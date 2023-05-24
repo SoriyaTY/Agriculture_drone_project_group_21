@@ -57,4 +57,6 @@ class DroneController extends Controller
         $drone = Drone::find($id)->delete();
         return response()->json(['success'=>true,'message'=>'Drone delete successfully']);
     }
+
+    
 }

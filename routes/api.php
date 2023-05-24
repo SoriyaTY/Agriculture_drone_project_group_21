@@ -57,7 +57,7 @@ Route::put('drone/{id}',    [DroneController::class, 'update']);
 Route::delete('drone/{id}', [DroneController::class, 'destroy']);
 
 //plans=========================
-Route::get('plan', [PlanController::class, 'index']);
+Route::get('plans', [PlanController::class, 'index']);
 Route::post('plan', [PlanController::class, 'store']);
 Route::get('plan', [PlanController::class, 'show']);
 
