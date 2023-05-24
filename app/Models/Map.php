@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Map extends Model
 {
@@ -21,6 +22,9 @@ class Map extends Model
         return $this->belongsTo(Location::class);
     }
 
+    public function drone():HasOne{
+        return $this->hasOne(Drone::class);
+    }
     // Map 
     public static function maps($request , $id = null)
     {
