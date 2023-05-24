@@ -16,7 +16,7 @@ class Farm extends Model
     ];
 
     // location and farm
-    public function farm():BelongsTo
+    public function location():BelongsTo
     {
         return $this->belongsTo(Location::class);
     }

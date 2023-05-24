@@ -35,7 +35,6 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
         $user = User::find($id);
         $user = new UserResource($user);
         return response()->json(['success'=>true,"data"=>$user]);
@@ -48,7 +47,7 @@ class UserController extends Controller
     {
         //
         $user = User::store($request,$id);
-        return response()->json(['success'=>true,"message"=>"Update successfully!"]);
+        return response()->json(['success'=>true,"message"=>"Update successfully!", 'data'=>$user], 200);
     }
 
     /**

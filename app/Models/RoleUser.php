@@ -17,4 +17,11 @@ class RoleUser extends Model
     public function user():HasOne{
         return $this->hasOne(User::class);
     }
+
+    public static function roleUser($request, $id = null)
+    {
+        $role = $request->only(['role']);
+        $role = self::updateOrCreate(['id'=>$id], $role);
+        return $role;
+    }
 }

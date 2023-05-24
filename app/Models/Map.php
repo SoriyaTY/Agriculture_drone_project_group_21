@@ -15,7 +15,7 @@ class Map extends Model
     ];
 
     // location and map
-    public function map():BelongsTo
+    public function location():BelongsTo
     {
         return $this->belongsTo(Location::class);
     }

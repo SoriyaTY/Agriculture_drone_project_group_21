@@ -21,7 +21,7 @@ class FarmResource extends JsonResource
 
             'name'      =>$this->name,
             'address'   =>$this->address,
-            'location'  => new LocationResource($this->farm),
+            'location'  =>new LocationResource($this->location)
         ];
     }
 }

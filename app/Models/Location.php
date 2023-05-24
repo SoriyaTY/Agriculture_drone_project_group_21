@@ -33,5 +33,4 @@ class Location extends Model
         $location = self::updateOrCreate(['id'=>$id], $location);
         return $location;
     }
-
 }

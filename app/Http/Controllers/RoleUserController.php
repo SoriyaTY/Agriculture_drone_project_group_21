@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RoleUserRequest;
 use App\Http\Resources\RoleUserResource;
 use App\Models\RoleUser;
 use Illuminate\Http\Request;
@@ -16,19 +17,17 @@ class RoleUserController extends Controller
         //
         $roleUser= RoleUser::all();
         $roleUser = RoleUserResource::collection($roleUser);
-        return response()->json(['success'=>true,'data'=>$roleUser]);
+        return response()->json(['success'=>true,'data'=>$roleUser], 200);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(RoleUserRequest $request)
     {
         //
-        $roleUser = RoleUser::create([
-            "role"=>request("role")
-        ]);
-        return response()->json(['success'=>true,'data'=>$roleUser]);
+        $roleUser = RoleUser::roleUser($request);
+        return response()->json(['success'=>true,'data'=>$roleUser], 200);
     }
 
     /**
@@ -36,15 +35,18 @@ class RoleUserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $showRoleUser = RoleUser::find($id);
+        $showRoleUser = new RoleUserResource($showRoleUser);
+        return response()->json(['success'=>true,'data'=>$showRoleUser], 200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(RoleUserRequest $request, string $id)
     {
-        //
+        $updateRoleUser = RoleUser::roleUser($request, $id);
+        return response()->json(['success'=>true,'data'=>$updateRoleUser], 200);
     }
 
     /**
@@ -52,6 +54,7 @@ class RoleUserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        RoleUser::find($id)->delete();
+        return response()->json(['success'=>true], 200);
     }
 }
