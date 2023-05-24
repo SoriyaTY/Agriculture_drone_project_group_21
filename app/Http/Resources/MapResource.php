@@ -16,6 +16,7 @@ class MapResource extends JsonResource
     {
         return [
             'name'=>$this->name,
+            "image"=>$this->image,
             'location'=>new LocationResource($this->location)
         ];
     }
