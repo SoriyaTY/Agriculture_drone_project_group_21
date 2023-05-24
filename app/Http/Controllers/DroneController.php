@@ -25,13 +25,7 @@ class DroneController extends Controller
     public function store(Request $request)
     {
         //
-        $drone = Drone::create([
-            "amount_Time"=>request("amount_Time"),
-            "speed"=>request("speed"),
-            "battery"=>request("battery"),
-            "user_id"=>request("user_id"),
-            "droneType_id"=>request("droneType_id")
-        ]);
+        $drone = Drone::store($request);
         return response()->json(['success'=>true,'data'=>$drone]);
     }
 
@@ -41,6 +35,9 @@ class DroneController extends Controller
     public function show(string $id)
     {
         //
+        $drone = Drone::find($id);
+        $drone = new DroneResource($drone);
+        return response()->json(['success'=>true,'data'=>$drone]);
     }
 
     /**
@@ -49,6 +46,8 @@ class DroneController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $drone = Drone::store($request,$id);
+        return response()->json(['success'=>true,'message'=>'Drone update successfully','data'=>$drone]);
     }
 
     /**
@@ -57,5 +56,7 @@ class DroneController extends Controller
     public function destroy(string $id)
     {
         //
+        $drone = Drone::find($id)->delete();
+        return response()->json(['success'=>true,'message'=>'Drone delete successfully']);
     }
 }

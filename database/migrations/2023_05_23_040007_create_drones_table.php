@@ -12,14 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('drones', function (Blueprint $table) {
-            $table->id();
+            $table->string('drone_id')->charset('utf8');
             $table->string('amount_Time');
             $table->string('speed');
             $table->string('battery');
+            $table->string('type');
+            $table->text('instruction');
             $table->unsignedBigInteger('user_id');
             $table->foreign("user_id")->references('id')->on('users')->onDelete('cascade');
-            $table->unsignedBigInteger('droneType_id');
-            $table->foreign("droneType_id")->references('id')->on('drone_types')->onDelete('cascade');
             $table->timestamps();
         });
     }

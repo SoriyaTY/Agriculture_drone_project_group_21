@@ -29,11 +29,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 
-
+//user=======================
 Route::get('users',[UserController::class,'index']);
 Route::post('users',[UserController::class,'store']);
 
-
+//roleuser============================
 Route::post('roleUser',[RoleUserController::class,'store']);
 Route::get('roleUser',[RoleUserController::class,'index']);
 
@@ -48,6 +48,7 @@ Route::post('droneType',[DroneTypeController::class, 'store']);
 Route::get('drone',[DroneController::class, 'index']);
 Route::post('drone',[DroneController::class, 'store']);
 
+//plans=========================
 Route::get('plan',[PlanController::class,'index']);
 Route::post('plan',[PlanController::class,'store']);
 
@@ -72,4 +73,7 @@ Route::get('/showMap/{id}',     [MapController::class, 'show'   ]);
 Route::put('/updateMap/{id}',   [MapController::class, 'update' ]);
 Route::delete('/deleteMap/{id}',[MapController::class, 'destroy']);
 
+
+///Requiment
+Route::get('drones',[DroneController::class,'index']);
 
