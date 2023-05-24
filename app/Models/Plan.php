@@ -14,7 +14,9 @@ class Plan extends Model
         "seeding"
     ];
 
-
+    public function drones(){
+        return $this->belongsToMany(Drone::class, 'drone_planes')->withTimestamps();
+    }
 
     public static function store($request, $id = null)
     {

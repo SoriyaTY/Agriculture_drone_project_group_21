@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('maps', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('image');
             $table->unsignedBigInteger('location_id');
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
             $table->timestamps();

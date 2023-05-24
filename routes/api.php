@@ -29,53 +29,55 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 
+//user=============================
+Route::get('users',        [UserController::class, 'index']);
+Route::post('users',       [UserController::class, 'store']);
+Route::get('users/{id}',   [UserController::class, 'show']);
+Route::put('users/{id}',   [UserController::class, 'update']);
+Route::delete('users/{id}', [UserController::class, 'destroy']);
 
-Route::get('users',        [UserController::class,'index']);
-Route::post('users',       [UserController::class,'store']);
-Route::get('users/{id}',   [UserController::class,'show']);
-Route::put('users/{id}',   [UserController::class,'update']);
-Route::delete('users/{id}',[UserController::class,'destroy']);
-
-
-Route::post('roleUser',       [RoleUserController::class,'store']);
-Route::get('roleUser',        [RoleUserController::class,'index']);
-Route::get('roleUser/{id}',   [RoleUserController::class,'show']);
-Route::put('roleUser/{id}',   [RoleUserController::class,'update']);
-Route::delete('roleUser/{id}',[RoleUserController::class,'destroy']);
-
+//userrole===================
+Route::post('roleUser',       [RoleUserController::class, 'store']);
+Route::get('roleUser',        [RoleUserController::class, 'index']);
+Route::get('roleUser/{id}',   [RoleUserController::class, 'show']);
+Route::put('roleUser/{id}',   [RoleUserController::class, 'update']);
+Route::delete('roleUser/{id}', [RoleUserController::class, 'destroy']);
 
 
 //  Type of drone ========================================
 
-Route::get('droneType',[DroneTypeController::class, 'index']);
-Route::post('droneType',[DroneTypeController::class, 'store']);
+Route::get('droneType', [DroneTypeController::class, 'index']);
+Route::post('droneType', [DroneTypeController::class, 'store']);
 
 // // Drone ======================================================
-Route::get('drone',[DroneController::class, 'index']);
-Route::post('drone',[DroneController::class, 'store']);
+Route::get('drone', [DroneController::class, 'index']);
+Route::post('drone', [DroneController::class, 'store']);
 
-Route::get('plan',[PlanController::class,'index']);
-Route::post('plan',[PlanController::class,'store']);
+//plans=========================
+Route::get('plan', [PlanController::class, 'index']);
+Route::post('plan', [PlanController::class, 'store']);
 
 // Location ======================================================
-Route::get('/locations',             [LocationController::class, 'index'  ]);
-Route::post('/createLocation',       [LocationController::class, 'store'  ]);
-Route::get('/showLocation/{id}',     [LocationController::class, 'show'   ]);
-Route::put('/updateLocation/{id}',   [LocationController::class, 'update' ]);
-Route::delete('/deleteLocation/{id}',[LocationController::class, 'destroy']);
+Route::get('/locations',             [LocationController::class, 'index']);
+Route::post('/createLocation',       [LocationController::class, 'store']);
+Route::get('/showLocation/{id}',     [LocationController::class, 'show']);
+Route::put('/updateLocation/{id}',   [LocationController::class, 'update']);
+Route::delete('/deleteLocation/{id}', [LocationController::class, 'destroy']);
 
 // Farm ==========================================================
-Route::get('/farms',             [FarmController::class, 'index'  ]);
-Route::post('/createFram',       [FarmController::class, 'store'  ]);
-Route::get('/showFram/{id}',     [FarmController::class, 'show'   ]);
-Route::put('/updateFarm/{id}',   [FarmController::class, 'update' ]);
-Route::delete('/deleteFram/{id}',[FarmController::class, 'destroy']);
+Route::get('/farms',             [FarmController::class, 'index']);
+Route::post('/createFram',       [FarmController::class, 'store']);
+Route::get('/showFram/{id}',     [FarmController::class, 'show']);
+Route::put('/updateFarm/{id}',   [FarmController::class, 'update']);
+Route::delete('/deleteFram/{id}', [FarmController::class, 'destroy']);
 
 // Maps ==========================================================
-Route::get('/maps',             [MapController::class, 'index'  ]);
-Route::post('/createMap',       [MapController::class, 'store'  ]);
-Route::get('/showMap/{id}',     [MapController::class, 'show'   ]);
-Route::put('/updateMap/{id}',   [MapController::class, 'update' ]);
-Route::delete('/deleteMap/{id}',[MapController::class, 'destroy']);
+Route::get('/maps',             [MapController::class, 'index']);
+Route::post('/createMap',       [MapController::class, 'store']);
+Route::get('/showMap/{id}',     [MapController::class, 'show']);
+Route::put('/updateMap/{id}',   [MapController::class, 'update']);
+Route::delete('/deleteMap/{id}', [MapController::class, 'destroy']);
 
 
+///Requiment
+Route::get('drones', [DroneController::class, 'index']);
