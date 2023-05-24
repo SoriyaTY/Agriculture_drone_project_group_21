@@ -50,8 +50,11 @@ Route::get('droneType', [DroneTypeController::class, 'index']);
 Route::post('droneType', [DroneTypeController::class, 'store']);
 
 // // Drone ======================================================
-Route::get('drone', [DroneController::class, 'index']);
-Route::post('drone', [DroneController::class, 'store']);
+Route::get('drone',         [DroneController::class, 'index']);
+Route::post('drone',        [DroneController::class, 'store']);
+Route::get('drone/{id}',    [DroneController::class, 'show']);
+Route::put('drone/{id}',    [DroneController::class, 'update']);
+Route::delete('drone/{id}', [DroneController::class, 'destroy']);
 
 //plans=========================
 Route::get('plan', [PlanController::class, 'index']);
@@ -81,4 +84,4 @@ Route::delete('/deleteMap/{id}', [MapController::class, 'destroy']);
 
 
 ///Requiment
-Route::get('drones', [DroneController::class, 'index']);
+// Route::get('drones', [DroneController::class, 'index']);
