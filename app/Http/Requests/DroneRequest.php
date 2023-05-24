@@ -33,7 +33,8 @@ class DroneRequest extends FormRequest
             'speed'      =>'required',
             'battery'    =>'required',
             'user_id'    =>'required',
-            'droneType_id'=>'required'
+            'type'       =>'required',
+            'instruction'=>'required'
         ];
     }
 }
