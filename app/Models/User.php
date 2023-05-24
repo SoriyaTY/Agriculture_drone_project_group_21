@@ -57,4 +57,9 @@ class User extends Authenticatable
         return $this->hasMany(Drone::class);
     }
 
+    public static function store($request,$id=null){
+        $user = $request->only(['name','number_phone','email','password','role_id']);
+        $user = self::updateOrCreate(['id'=>$id],$user);
+        return $user;
+    }
 }

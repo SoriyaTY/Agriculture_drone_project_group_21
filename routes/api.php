@@ -50,19 +50,6 @@ Route::post('drone',[DroneController::class, 'store']);
 
 Route::get('plan',[PlanController::class,'index']);
 Route::post('plan',[PlanController::class,'store']);
-//  Type of drone ========================================
-Route::get('/type',             [DroneTypeController::class, 'index'  ]);
-Route::post('/typePost',        [DroneTypeController::class, 'store'  ]);
-Route::get('/typeShow',         [DroneTypeController::class, 'show'   ]);
-Route::put('/typeUpdate',       [DroneTypeController::class, 'update' ]);
-Route::delete('/typeDelete',    [DroneTypeController::class, 'destroy']);
-
-// Drone ======================================================
-Route::get('/drone',            [DroneController::class, 'index'  ]);
-Route::post('/dronePost',       [DroneController::class, 'store'  ]);
-Route::get('/droneShow',        [DroneController::class, 'show'   ]);
-Route::put('/droneUpdate',      [DroneController::class, 'update' ]);
-Route::delete('/droneDelete',   [DroneController::class, 'destroy']);
 
 // Location ======================================================
 Route::get('/locations',             [LocationController::class, 'index'  ]);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
 class UserController extends Controller
 {
@@ -25,13 +26,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
-        $user = User::create([
-            'name'=>request('name'),
-            'number_phone'=>request('number_phone'),
-            'email'=>request('email'),
-            'password'=>request('password'),
-            'role_id'=>request('role_id')
-        ]);
+        $user = User::store($request);
         return response()->json(['success'=>true,"data"=>$user]);
     }
 
@@ -41,6 +36,9 @@ class UserController extends Controller
     public function show(string $id)
     {
         //
+        $user = User::find($id);
+        $user = new UserResource($user);
+        return response()->json(['success'=>true,"data"=>$user]);
     }
 
     /**
@@ -49,6 +47,8 @@ class UserController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $user = User::store($request,$id);
+        return response()->json(['success'=>true,"message"=>"Update successfully!"]);
     }
 
     /**
@@ -57,5 +57,7 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         //
+        $user  = User::find($id)->delete();
+        return response()->json(['success'=>true,'message'=>"Delete successfully!"]);
     }
 }
