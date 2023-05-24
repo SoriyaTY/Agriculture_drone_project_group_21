@@ -56,6 +56,7 @@ Route::post('drone', [DroneController::class, 'store']);
 //plans=========================
 Route::get('plan', [PlanController::class, 'index']);
 Route::post('plan', [PlanController::class, 'store']);
+Route::get('plan', [PlanController::class, 'show']);
 
 // Location ======================================================
 Route::get('/locations',             [LocationController::class, 'index']);

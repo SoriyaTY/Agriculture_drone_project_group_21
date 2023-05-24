@@ -13,9 +13,9 @@ class Drone extends Model
         "amount_Time",
         "speed",
         "battery",
-        "user_id",
         "type",
-        "instruction"
+        "instruction",
+        "user_id",
     ];
 
     public function user(){
@@ -27,7 +27,7 @@ class Drone extends Model
     }
 
     public static function store($request,$id=null){
-        $drone = $request->only(['drone_id','amount_Time','speed','battery','user_id','type','instruction']);
+        $drone = $request->only(['drone_id','amount_Time','speed','battery','type','instruction','user_id',]);
         $drone = self::updateOrCreate(['id'=>$id],$drone);
 
         $dronePlan = request('plans');
