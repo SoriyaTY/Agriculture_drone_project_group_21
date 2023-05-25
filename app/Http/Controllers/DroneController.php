@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\DroneRequest;
+use App\Http\Resources\DroneIdResource;
+use App\Http\Resources\DroneLocationResource;
 use App\Http\Resources\DroneResource;
 use App\Models\Drone;
+use Dotenv\Util\Str;
 
 class DroneController extends Controller
 {
@@ -14,6 +17,8 @@ class DroneController extends Controller
     public function index()
     {
         $drone = Drone::all();
+        $drone_id = request('drone_id');
+        $drone = Drone::where('drone_id', 'like', "%".$drone_id."%")->get();
         $drone = DroneResource::collection($drone);
         return response()->json(['success'=>true,'data'=>$drone]);
     }
@@ -23,7 +28,6 @@ class DroneController extends Controller
      */
     public function store(DroneRequest $request)
     {
-        //
         $drone = Drone::store($request);
         return response()->json(['success'=>true,'data'=>$drone]);
     }
@@ -58,5 +62,12 @@ class DroneController extends Controller
         return response()->json(['success'=>true,'message'=>'Drone delete successfully']);
     }
 
-    
+    public function droneLocation()
+    {
+        $droneLocation = Drone::all();
+        $drone_id = request('drone_id');
+        $droneLocation = Drone::where('drone_id', 'like', "%".$drone_id."%")->get();
+        $droneLocation = DroneLocationResource::collection($droneLocation);
+        return response()->json(['success'=>true,'data'=>$droneLocation]);
+    }
 }

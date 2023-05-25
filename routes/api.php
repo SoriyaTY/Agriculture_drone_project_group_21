@@ -85,3 +85,8 @@ Route::delete('/deleteMap/{id}', [MapController::class, 'destroy']);
 
 ///Requiment
 // Route::get('drones', [DroneController::class, 'index']);
+
+// drone with current Location ================================================
+Route::get('/drone/{id}/{location}', [DroneController::class, 'droneLocation']);
+
+

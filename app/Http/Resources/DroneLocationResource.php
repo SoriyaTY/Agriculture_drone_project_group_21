@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PlanResource extends JsonResource
+class DroneLocationResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,9 +15,11 @@ class PlanResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            "id"=>$this->id,
-            "seeding"=>$this->seeding,
-            "name"=>$this->name
+            "drone_id"=>$this->drone_id,
+            "location" => [
+                "latitude"  =>$this ->  map -> location -> latitude,
+                "longitude" =>$this ->  map -> location -> longitude,
+            ]
         ];
     }
 }
