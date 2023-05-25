@@ -18,7 +18,7 @@ class FarmResource extends JsonResource
     public function toArray(Request $request, $id = null): array
     {
         return [
-
+            'id'=>$this->id,
             'name'      =>$this->name,
             'address'   =>$this->address,
             'location'  =>new LocationResource($this->location)

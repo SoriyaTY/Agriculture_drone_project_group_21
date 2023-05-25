@@ -50,11 +50,13 @@ Route::get('droneType', [DroneTypeController::class, 'index']);
 Route::post('droneType', [DroneTypeController::class, 'store']);
 
 // // Drone ======================================================
-Route::get('drone',         [DroneController::class, 'index']);
 Route::post('drone',        [DroneController::class, 'store']);
-Route::get('drone/{id}',    [DroneController::class, 'show']);
+Route::get('drones/{id}',    [DroneController::class, 'show']);
 Route::put('drone/{id}',    [DroneController::class, 'update']);
 Route::delete('drone/{id}', [DroneController::class, 'destroy']);
+
+
+Route::get('drones',         [DroneController::class, 'index']);
 
 //plans=========================
 Route::get('plans', [PlanController::class, 'index']);
@@ -76,12 +78,12 @@ Route::put('/updateFarm/{id}',   [FarmController::class, 'update']);
 Route::delete('/deleteFram/{id}', [FarmController::class, 'destroy']);
 
 // Maps ==========================================================
-Route::get('/maps',             [MapController::class, 'index']);
 Route::post('/createMap',       [MapController::class, 'store']);
 Route::get('/showMap/{id}',     [MapController::class, 'show']);
 Route::put('/updateMap/{id}',   [MapController::class, 'update']);
 Route::delete('/deleteMap/{id}', [MapController::class, 'destroy']);
 
+Route::get('/maps', [MapController::class, 'index']);
 
-///Requiment
-// Route::get('drones', [DroneController::class, 'index']);
+
+Route::get('mapPhoto/{name}/{id}',[DroneController::class,'DownloadMapPhoto']);

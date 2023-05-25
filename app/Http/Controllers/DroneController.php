@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DroneRequest;
 use App\Http\Resources\DroneResource;
+use App\Http\Resources\FarmResource;
+use App\Http\Resources\MapResource;
 use App\Models\Drone;
+use App\Models\Farm;
+use App\Models\Map;
 
 class DroneController extends Controller
 {
@@ -58,5 +62,14 @@ class DroneController extends Controller
         return response()->json(['success'=>true,'message'=>'Drone delete successfully']);
     }
 
-    
+
+    //====== Download map photo the drone took of KC Farm #7====
+    public function DownloadMapPhoto($name,$id){
+        $farm = Farm::where('id',$id)->first();
+        $map = Map::where('name',$name)->first();
+        if($farm && $map){
+            return $map->image;
+        }
+        return response()->json(['message'=>'Not found']);
+    }
 }

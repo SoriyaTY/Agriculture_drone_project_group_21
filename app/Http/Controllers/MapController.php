@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MapRequest;
 use App\Http\Resources\MapResource;
+use App\Http\Resources\MapsPhotoResource;
 use App\Models\Map;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,9 @@ class MapController extends Controller
      */
     public function index()
     {
-        return Map::all();
+        $map = Map::all();
+        $map = MapResource::collection($map);
+        return response()->json(['success'=>true,'data'=>$map]);
     }
 
     /**
@@ -53,7 +56,6 @@ class MapController extends Controller
     {
         Map::find($id)->delete();
         return response()->json([ 'message'=> 'map is delete'], 200);
-
-
     }
+
 }

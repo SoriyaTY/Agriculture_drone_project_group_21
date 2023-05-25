@@ -15,6 +15,7 @@ class LocationController extends Controller
     public function index()
     {
         $location = Location::all();
+        $location = LocationResource::collection($location);
         return response()->json(['success'=>true,'data'=>$location]);
     }
 

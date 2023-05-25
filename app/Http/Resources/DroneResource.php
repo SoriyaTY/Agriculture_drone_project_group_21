@@ -22,7 +22,7 @@ class DroneResource extends JsonResource
             "battery"=>$this->battery,
             "type"=>$this->type,
             "instruction"=>$this->instruction,
-            "map"=>$this->map,
+            "map"=>new MapResource($this->map),
             "users"=>new UserResource($this->user),
             "plans"=>PlanResource::collection($this->plans)
         ];

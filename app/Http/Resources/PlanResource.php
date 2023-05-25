@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Drone;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -17,8 +18,7 @@ class PlanResource extends JsonResource
         return [
             "id"=>$this->id,
             "seeding"=>$this->seeding,
-            "name"=>$this->name,
-            "drones"=>$this->drones
+            "name"=>$this->name
         ];
     }
 }
