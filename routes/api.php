@@ -7,6 +7,7 @@ use App\Http\Controllers\PlanController;
 use App\Http\Controllers\RoleUserController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FarmController;
+use App\Http\Controllers\InstructionController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MapController;
 use Illuminate\Http\Request;
@@ -131,3 +132,6 @@ Route::get('/showMap/{id}',     [MapController::class, 'show']);
 Route::get('/drone/{id}/{location}', [DroneController::class, 'droneLocation']);
 
 
+///instruction==============
+Route::post('instruction',[InstructionController::class,'store']);
+Route::get('instruction',[InstructionController::class,'index']);

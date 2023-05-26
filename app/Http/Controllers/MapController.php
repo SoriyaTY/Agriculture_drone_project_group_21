@@ -73,7 +73,7 @@ class MapController extends Controller
             ->first();
 
         if ($image) {
-            return response()->json(['status'=>true,'image'=>$image]);
+            return response()->json(['status'=>true,'image'=>$image->image]);
         }
         return response()->json(['message' => 'Map id not found']);
     }
