@@ -13,7 +13,6 @@ class AuthenticationController extends Controller
     public function login(AuthenticationRequest $request)
     {
         $credentials = $request->only(['email', 'password']);
-        // dd(Auth::attempt($credentials));
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             $token = $user->createToken('API Token')->plainTextToken;
