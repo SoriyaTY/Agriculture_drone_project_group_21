@@ -13,7 +13,8 @@ class Map extends Model
     protected $fillable = [
         'name',
         'image',
-        'location_id'
+        'location_id',
+        'farm_id'
     ];
 
     // location and map
@@ -22,13 +23,18 @@ class Map extends Model
         return $this->belongsTo(Location::class);
     }
 
+    public function farm()
+    {
+        return $this->belongsTo(Farm::class);
+    }
+
     public function drone():HasOne{
         return $this->hasOne(Drone::class);
     }
     // Map 
     public static function maps($request , $id = null)
     {
-        $map = $request->only(['name', 'image','location_id']);
+        $map = $request->only(['name', 'image','location_id','farm_id']);
         $map = self::updateOrCreate(['id'=>$id], $map);
         return $map;
     }

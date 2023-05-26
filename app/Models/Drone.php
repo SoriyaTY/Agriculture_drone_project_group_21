@@ -15,8 +15,8 @@ class Drone extends Model
         "battery",
         "type",
         "map_id",
-        "instruction",
-        "user_id"
+        "user_id",
+        "instruction_id"
     ];
 
     public function user(){
@@ -31,8 +31,12 @@ class Drone extends Model
         return $this->belongsTo(Map::class);
     }
 
+    public function instruction(){
+        return $this->belongsTo(Instruction::class);
+    }
+
     public static function store($request,$id=null){
-        $drone = $request->only(['drone_id','amount_Time','speed','battery','user_id','map_id','type','instruction']);
+        $drone = $request->only(['drone_id','amount_Time','speed','battery','user_id','map_id','type','instruction_id']);
         $drone = self::updateOrCreate(['id'=>$id],$drone);
 
         $dronePlan = request('plans');

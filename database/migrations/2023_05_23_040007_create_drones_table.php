@@ -18,11 +18,12 @@ return new class extends Migration
             $table->string('speed');
             $table->string('battery');
             $table->string('type');
-            $table->text('instruction');
             $table->unsignedBigInteger('user_id');
             $table->foreign("user_id")->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('map_id');
             $table->foreign('map_id')->references('id')->on('maps')->onDelete('cascade');
+            $table->unsignedBigInteger('instruction_id');
+            $table->foreign('instruction_id')->references('id')->on('instructions')->onDelete('cascade');
             $table->timestamps();
         });
     }

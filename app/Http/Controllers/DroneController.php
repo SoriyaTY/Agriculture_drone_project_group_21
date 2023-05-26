@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\DroneRequest;
-use App\Http\Resources\DroneIdResource;
 use App\Http\Resources\DroneLocationResource;
 use App\Http\Resources\DroneResource;
+use App\Http\Resources\ShowDroneResource;
 use App\Models\Drone;
-use Dotenv\Util\Str;
+use App\Models\Farm;
+use App\Models\Map;
 
 class DroneController extends Controller
 {
@@ -38,7 +39,7 @@ class DroneController extends Controller
     public function show(string $id)
     {
         $drone = Drone::find($id);
-        $drone = new DroneResource($drone);
+        $drone = new ShowDroneResource($drone);
         return response()->json(['success'=>true,'data'=>$drone]);
     }
 
@@ -61,6 +62,8 @@ class DroneController extends Controller
         return response()->json(['success'=>true,'message'=>'Drone delete successfully']);
     }
 
+
+    //======Show current latitude+longitude of drone D23=======
     public function droneLocation()
     {
         $droneLocation = Drone::all();

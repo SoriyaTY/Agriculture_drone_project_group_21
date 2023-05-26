@@ -2,11 +2,10 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Drone;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PlanResource extends JsonResource
+class MapsPhotoResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,9 +15,7 @@ class PlanResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            "id"=>$this->id,
-            "seeding"=>$this->seeding,
-            "name"=>$this->name
+            "Hello"
         ];
     }
 }

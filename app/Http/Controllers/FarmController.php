@@ -15,7 +15,9 @@ class FarmController extends Controller
      */
     public function index()
     {
-        return Farm::all();
+        $farm = Farm::all();
+        $farm = FarmResource::collection($farm);
+        return response()->json(['success'=>true,'data'=>$farm]);
     }
 
     /**

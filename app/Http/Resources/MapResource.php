@@ -14,10 +14,13 @@ class MapResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        // dd(1);
         return [
+            'id'=>$this->id,
             'name'=>$this->name,
             "image"=>$this->image,
-            'location'=>new LocationResource($this->location)
+            'location'=>new LocationResource($this->location),
+            'farm'=>new FarmResource($this->farm)
         ];
     }
 }
