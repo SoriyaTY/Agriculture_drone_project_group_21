@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\DroneRequest;
+use App\Http\Resources\DroneLocationResource;
 use App\Http\Resources\DroneResource;
-use App\Http\Resources\FarmResource;
-use App\Http\Resources\MapResource;
+use App\Http\Resources\ShowDroneResource;
 use App\Models\Drone;
 use App\Models\Farm;
 use App\Models\Map;
@@ -18,6 +18,8 @@ class DroneController extends Controller
     public function index()
     {
         $drone = Drone::all();
+        $drone_id = request('drone_id');
+        $drone = Drone::where('drone_id', 'like', "%".$drone_id."%")->get();
         $drone = DroneResource::collection($drone);
         return response()->json(['success'=>true,'data'=>$drone]);
     }
@@ -27,7 +29,6 @@ class DroneController extends Controller
      */
     public function store(DroneRequest $request)
     {
-        //
         $drone = Drone::store($request);
         return response()->json(['success'=>true,'data'=>$drone]);
     }
@@ -38,7 +39,7 @@ class DroneController extends Controller
     public function show(string $id)
     {
         $drone = Drone::find($id);
-        $drone = new DroneResource($drone);
+        $drone = new ShowDroneResource($drone);
         return response()->json(['success'=>true,'data'=>$drone]);
     }
 
@@ -63,13 +64,13 @@ class DroneController extends Controller
     }
 
 
-    //====== Download map photo the drone took of KC Farm #7====
-    public function DownloadMapPhoto($name,$id){
-        $farm = Farm::where('id',$id)->first();
-        $map = Map::where('name',$name)->first();
-        if($farm && $map){
-            return $map->image;
-        }
-        return response()->json(['message'=>'Not found']);
+    //======Show current latitude+longitude of drone D23=======
+    public function droneLocation()
+    {
+        $droneLocation = Drone::all();
+        $drone_id = request('drone_id');
+        $droneLocation = Drone::where('drone_id', 'like', "%".$drone_id."%")->get();
+        $droneLocation = DroneLocationResource::collection($droneLocation);
+        return response()->json(['success'=>true,'data'=>$droneLocation]);
     }
 }

@@ -21,6 +21,9 @@ class Farm extends Model
         return $this->belongsTo(Location::class);
     }
 
+    public function map(){
+        return $this->hasMany(Map::class);
+    }
     // Farm
     public static function farms($request, $id = null)
     {

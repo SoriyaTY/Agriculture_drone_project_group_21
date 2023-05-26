@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\DroneController;
 use App\Http\Controllers\DroneTypeController;
 use App\Http\Controllers\PlanController;
@@ -28,6 +29,28 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 
+Route::middleware(['auth:sanctum'])->group(function () {
+
+    Route::post('logout',[AuthenticationController::class,'logout']);
+
+    Route::post('droneType', [DroneTypeController::class, 'store']);
+    Route::post('plan', [PlanController::class, 'store']);
+
+    Route::get('mapPhoto/{name}/{id}',[MapController::class,'DownloadMapPhoto']);
+    Route::delete('mapPhoto/{name}/{id}',[MapController::class,'deleteImage']);
+    Route::put('/updateMap/{id}',   [MapController::class, 'update']);
+
+    Route::get('/drone/{id}/{location}', [DroneController::class, 'droneLocation']);
+    Route::put('drone/{id}',    [DroneController::class, 'update']);
+    
+});
+
+
+
+Route::post('login',[AuthenticationController::class,'login']);
+Route::post('register',[AuthenticationController::class,'register']);
+
+
 
 //user=============================
 Route::get('users',        [UserController::class, 'index']);
@@ -35,6 +58,8 @@ Route::post('users',       [UserController::class, 'store']);
 Route::get('users/{id}',   [UserController::class, 'show']);
 Route::put('users/{id}',   [UserController::class, 'update']);
 Route::delete('users/{id}', [UserController::class, 'destroy']);
+
+
 
 //userrole===================
 Route::post('roleUser',       [RoleUserController::class, 'store']);
@@ -45,23 +70,24 @@ Route::delete('roleUser/{id}', [RoleUserController::class, 'destroy']);
 
 
 //  Type of drone ========================================
-
 Route::get('droneType', [DroneTypeController::class, 'index']);
-Route::post('droneType', [DroneTypeController::class, 'store']);
+
+
 
 // // Drone ======================================================
 Route::post('drone',        [DroneController::class, 'store']);
 Route::get('drones/{id}',    [DroneController::class, 'show']);
 Route::put('drone/{id}',    [DroneController::class, 'update']);
 Route::delete('drone/{id}', [DroneController::class, 'destroy']);
-
-
 Route::get('drones',         [DroneController::class, 'index']);
+Route::post('droneType', [DroneTypeController::class, 'store']);
+
 
 //plans=========================
-Route::get('plans', [PlanController::class, 'index']);
 Route::post('plan', [PlanController::class, 'store']);
+Route::get('plans', [PlanController::class, 'index']);
 Route::get('plan', [PlanController::class, 'show']);
+
 
 // Location ======================================================
 Route::get('/locations',             [LocationController::class, 'index']);
@@ -70,6 +96,7 @@ Route::get('/showLocation/{id}',     [LocationController::class, 'show']);
 Route::put('/updateLocation/{id}',   [LocationController::class, 'update']);
 Route::delete('/deleteLocation/{id}', [LocationController::class, 'destroy']);
 
+
 // Farm ==========================================================
 Route::get('/farms',             [FarmController::class, 'index']);
 Route::post('/createFram',       [FarmController::class, 'store']);
@@ -77,13 +104,24 @@ Route::get('/showFram/{id}',     [FarmController::class, 'show']);
 Route::put('/updateFarm/{id}',   [FarmController::class, 'update']);
 Route::delete('/deleteFram/{id}', [FarmController::class, 'destroy']);
 
+
 // Maps ==========================================================
+Route::get('/maps', [MapController::class, 'index']);
 Route::post('/createMap',       [MapController::class, 'store']);
 Route::get('/showMap/{id}',     [MapController::class, 'show']);
 Route::put('/updateMap/{id}',   [MapController::class, 'update']);
 Route::delete('/deleteMap/{id}', [MapController::class, 'destroy']);
 
-Route::get('/maps', [MapController::class, 'index']);
 
 
-Route::get('mapPhoto/{name}/{id}',[DroneController::class,'DownloadMapPhoto']);
+
+
+///Requiment
+Route::get('mapPhoto/{name}/{id}',[MapController::class,'DownloadMapPhoto']);
+Route::delete('mapPhoto/{name}/{id}',[MapController::class,'deleteImage']);
+
+
+// drone with current Location ================================================
+Route::get('/drone/{id}/{location}', [DroneController::class, 'droneLocation']);
+
+
