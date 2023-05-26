@@ -70,13 +70,15 @@ class MapController extends Controller
             ->whereHas('farm', function ($query) use ($farm) {
                 $query->where('id', $farm->id);
             })
-            ->value('image');
+            ->first();
 
         if ($image) {
             return response()->json(['status'=>true,'image'=>$image]);
         }
         return response()->json(['message' => 'Map id not found']);
     }
+
+
     //====Delete the image of KC Farm 7====
     public function deleteImage($name, $id){
 
@@ -89,10 +91,33 @@ class MapController extends Controller
             ->whereHas('farm', function ($query) use ($farm) {
                 $query->where('id', $farm->id);
             })
-            ->value('image');
+            ->first();
 
         if ($image) {
+            $image->image=null;
+            $image->save();
             return response()->json(['status'=>true,'image'=>$image]);
+        }
+        return response()->json(['message' => 'Map id not found']);
+    }
+
+    //====Add a newly taken mapping image for farm 7 in Kampong Cham====
+    public function postMapPhoto(Request $image,$name,$id){
+        $farm = Farm::where('id', $id)->first();
+        if (!$farm) {
+            return response()->json(['message' => 'Farm id not found']);
+        }
+
+        $map = Map::where('name', $name)
+            ->whereHas('farm', function ($query) use ($farm) {
+                $query->where('id', $farm->id);
+            })
+            ->first();
+
+        if ($map) {
+            $map->image = request('image');
+            $map->save();
+            return response()->json(['status'=>true,'image'=>$map]);
         }
         return response()->json(['message' => 'Map id not found']);
     }
