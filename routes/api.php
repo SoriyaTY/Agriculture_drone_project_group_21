@@ -53,7 +53,7 @@ Route::post('droneType', [DroneTypeController::class, 'store']);
 Route::get('drone',         [DroneController::class, 'index']);
 Route::post('drone',        [DroneController::class, 'store']);
 Route::get('drone/{id}',    [DroneController::class, 'show']);
-Route::put('drone/{id}',    [DroneController::class, 'update']);
+Route::put('drone/{name}',  [DroneController::class, 'update']);
 Route::delete('drone/{id}', [DroneController::class, 'destroy']);
 
 //plans=========================
@@ -88,5 +88,12 @@ Route::delete('/deleteMap/{id}', [MapController::class, 'destroy']);
 
 // drone with current Location ================================================
 Route::get('/drone/{id}/{location}', [DroneController::class, 'droneLocation']);
+
+
+
+
+
+
+
 
 
