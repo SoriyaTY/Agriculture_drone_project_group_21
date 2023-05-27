@@ -117,7 +117,7 @@ class MapController extends Controller
         if ($map) {
             $map->image = request('image');
             $map->save();
-            return response()->json(['status'=>true,'image'=>$map]);
+            return response()->json(['status'=>true,'image'=>$map->image]);
         }
         return response()->json(['message' => 'Map id not found']);
     }
