@@ -19,7 +19,7 @@ class PlanResource extends JsonResource
             "id"=>$this->id,
             "seeding"=>$this->seeding,
             "name"=>$this->name,
-            "instruction"=>$this->instruction
+            "instruction"=>new InstructionResource($this->instruction)
         ];
     }
 }
