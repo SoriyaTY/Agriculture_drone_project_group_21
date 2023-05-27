@@ -106,6 +106,7 @@ Route::get('drones',         [DroneController::class, 'index']);
 //plans=========================
 Route::get('plans', [PlanController::class, 'index']);
 Route::get('plan', [PlanController::class, 'show']);
+Route::get('plans/{name}', [PlanController::class, 'index']);
 
 
 // Location ======================================================

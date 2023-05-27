@@ -15,6 +15,8 @@ class PlanController extends Controller
     {
         //
         $plan= Plan::all();
+        $planName = request('name');
+        $plan = Plan::where('name',$planName)->get();
         $plan = PlanResource::collection($plan);
         return response()->json(['success'=>true,'data'=>$plan]);
     }
