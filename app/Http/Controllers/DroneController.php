@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\DroneRequest;
+use App\Http\Requests\InstructGivenPlan;
+use App\Http\Requests\InsturctGivenPlan;
 use App\Http\Resources\DroneLocationResource;
 use App\Http\Resources\DroneResource;
 use App\Http\Resources\ShowDroneResource;
@@ -62,7 +64,6 @@ class DroneController extends Controller
         return response()->json(['success'=>true,'message'=>'Drone delete successfully']);
     }
 
-
     //======Show current latitude+longitude of drone D23=======
     public function droneLocation()
     {
@@ -72,4 +73,14 @@ class DroneController extends Controller
         $droneLocation = DroneLocationResource::collection($droneLocation);
         return response()->json(['success'=>true,'data'=>$droneLocation]);
     }
+
+
+    // update instrution with given plan 
+    public function updateInstrution(InstructGivenPlan $request, string $name)
+    {
+        $drone = Drone::where('drone_id', $name)->first();
+        $drone->update($request->all()); 
+        return response()->json(['success' => true, 'message' => 'Drone updated successfully', 'data' => $drone]);
+    }
+
 }
