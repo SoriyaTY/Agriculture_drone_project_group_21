@@ -63,6 +63,5 @@ class InstructionController extends Controller
         //
         $instruction = Instruction::find($id)->delete();
         return response()->json(['success'=>true,'message'=>"Instruction delete successfully!"]);
-
     }
 }
