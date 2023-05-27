@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('seeding');
             $table->string('name');
+            $table->unsignedBigInteger('instruction_id');
+            $table->foreign('instruction_id')->references('id')->on('instructions')->onDelete('cascade');
             $table->timestamps();
         });
     }

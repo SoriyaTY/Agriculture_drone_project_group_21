@@ -18,7 +18,8 @@ class PlanResource extends JsonResource
         return [
             "id"=>$this->id,
             "seeding"=>$this->seeding,
-            "name"=>$this->name
+            "name"=>$this->name,
+            "instruction"=>$this->instruction
         ];
     }
 }
