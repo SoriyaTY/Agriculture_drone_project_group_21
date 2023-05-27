@@ -20,7 +20,7 @@ class DroneIdResource extends JsonResource
             "speed"=>$this->speed,
             "battery"=>$this->battery,
             "type"=>$this->type,
-            'instruction'=>new InstructionResource($this->instruction),
+            'instruction'=>new InstructionResource($this->instruction_id),
             "map"=>$this->map,
             "users"=>new UserResource($this->user)
         ];

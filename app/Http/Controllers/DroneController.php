@@ -76,11 +76,10 @@ class DroneController extends Controller
 
 
     // update instrution with given plan 
-    public function updateInstrution(InstructGivenPlan $request, string $name)
+    public function updateInstruction(InstructGivenPlan $request, string $name)
     {
         $drone = Drone::where('drone_id', $name)->first();
         $drone->update($request->all()); 
         return response()->json(['success' => true, 'message' => 'Drone updated successfully', 'data' => $drone]);
     }
-
 }
