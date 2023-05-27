@@ -44,6 +44,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::put('drone/{id}',    [DroneController::class, 'update']);
 
+    Route::put('drones/{id}',    [DroneController::class, 'updateInstrution']);//instruct with given plan
+
     Route::post('drone',        [DroneController::class, 'store']);
 
     Route::delete('drone/{id}', [DroneController::class, 'destroy']);
