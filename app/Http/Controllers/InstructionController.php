@@ -37,6 +37,9 @@ class InstructionController extends Controller
     public function show(string $id)
     {
         //
+        $instruction = Instruction::find($id);
+        $instruction =new InstructionResource($instruction);
+        return response()->json(['success'=>true,'data'=>$instruction]);
     }
 
     /**
@@ -45,6 +48,11 @@ class InstructionController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $instruction = Instruction::find($id)->update([
+            "description"=>$request->description
+        ]);
+        $instruction =new InstructionResource($instruction);
+        return response()->json(['success'=>true,'message'=>"Instruction update successfully!"]);
     }
 
     /**
@@ -53,5 +61,8 @@ class InstructionController extends Controller
     public function destroy(string $id)
     {
         //
+        $instruction = Instruction::find($id)->delete();
+        return response()->json(['success'=>true,'message'=>"Instruction delete successfully!"]);
+
     }
 }
