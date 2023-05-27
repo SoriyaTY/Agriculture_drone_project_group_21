@@ -39,13 +39,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::post('mapPhoto/{name}/{id}',[MapController::class,'postMapPhoto']);
 
-    Route::get('mapPhoto/{name}/{id}',[MapController::class,'DownloadMapPhoto']);
-
     Route::delete('mapPhoto/{name}/{id}',[MapController::class,'deleteImage']);
 
     Route::put('/updateMap/{id}',   [MapController::class, 'update']);
-
-    Route::get('/drone/{id}/{location}', [DroneController::class, 'droneLocation']);
 
     Route::put('drone/{id}',    [DroneController::class, 'update']);
 
@@ -135,3 +131,9 @@ Route::get('/drone/{id}/{location}', [DroneController::class, 'droneLocation']);
 ///instruction==============
 Route::post('instruction',[InstructionController::class,'store']);
 Route::get('instruction',[InstructionController::class,'index']);
+
+//==========downloadmapphoto============
+Route::get('mapPhoto/{name}/{id}',[MapController::class,'DownloadMapPhoto']);
+
+//==============dronelocaton=============
+Route::get('/drone/{id}/{location}', [DroneController::class, 'droneLocation']);
